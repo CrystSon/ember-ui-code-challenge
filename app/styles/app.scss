@@ -1,4 +1,6 @@
 @import 'bulma';
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
 
 :root {
   --bg: #06315F;
@@ -56,4 +58,13 @@ input::placeholder {
 .user-select:hover > p{
   color: var(--font-color2);
   text-decoration: underline;
+}
+
+.modal-button-group {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.modal-button {
+  width: 50px;
 }

@@ -1,31 +1,55 @@
 {{page-title 'User'}}
-  <div class="container has-text-centered">
-    <div class="column is-3 is-offset-4">
+<div class='container has-text-centered'>
+  <div class='column is-3 is-offset-4'>
 
-      <LinkTo @route="users">
-        <button class="button mb-2" type="button">
-          Back to users
-        </button>
-      </LinkTo>
+    <LinkTo @route='users'>
+      <button class='button mb-2' type='button'>
+        Back to users
+      </button>
+    </LinkTo>
 
-      <div class="user-profile">
+    <div class='user-profile'>
 
-        <figure class="avatar">
-          <img src={{@model.image}} width="256px" alt="User" />
-        </figure>
+      <figure class='avatar'>
+        <img src={{@model.image}} width='256px' alt='User' />
+      </figure>
 
-        <p class="title has-text-white my-2">
-          {{@model.name}}
-        </p>
+      <p class='title has-text-white my-2'>
+        {{@model.name}}
+      </p>
 
-        <p class="subtitle has-text-white my-2">
-          Example Value:
-          {{@model.value}}
-        </p>
+      <p class='subtitle has-text-white my-2'>
+        Example Value:
+        {{@model.value}}
+      </p>
 
-        {{!-- Place the component to archive/unarchive users here --}}
+      <p class='subtitle has-text-white my-2'>
+        Archived:
+        {{#if (and this.onArchieve.last this.onArchieve.isRunning)}}
+          saving...
+        {{else if (and this.onArchieve.last this.onArchieve.last.isError)}}
+          error occured
+        {{else}}
+          {{this.user.isArchived}}
+        {{/if}}
+      </p>
+      {{! Place the component to archive/unarchive users here }}
+      <button class='button mb-2' type='button' {{on 'click' this.onShowModal}}>
+        {{#if this.user.isArchived}}
+          Unarchive
+        {{else}}
+          Archive
+        {{/if}}
+      </button>
+      {{#if this.isShowingModal}}
+        <ConfirmDialog
+          @isArchived={{this.user.isArchived}}
+          @onConfirmModal={{this.onConfirmModal}}
+          @onDeclineModal={{this.onDeclineModal}}
+        />
+      {{/if}}
 
-      </div>
     </div>
   </div>
+</div>
 {{outlet}}

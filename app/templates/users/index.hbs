@@ -19,6 +19,15 @@
 
       </div>
     {{/each}}
-
+  </div>
+  <div class="is-centered">
+    <button type="button" {{on "click" (fn this.showCreateDialog)}}>
+      Add User
+    </button>
+    {{#if this.isShowCreateUserDialog}}
+      <CreateUserDialog 
+        @closeDialog={{(fn (mut this.isShowCreateUserDialog) false)}}
+      />
+    {{/if}}
   </div>
 </div>

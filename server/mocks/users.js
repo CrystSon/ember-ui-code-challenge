@@ -1,5 +1,7 @@
 'use strict';
 
+var currentId = 5;
+
 module.exports = function (app) {
   const express = require('express');
   let usersRouter = express.Router();
@@ -37,6 +39,18 @@ module.exports = function (app) {
   usersRouter.get('/', function (req, res) {
     res.send(usersJson);
   });
+
+  usersRouter.post('/', function (request, res) {
+    const { body: { data: { attributes: newAttributes } = {} } = {} } = request;
+    const user={
+      id: `${currentId}`,
+      type: 'user',
+      attributes: newAttributes
+    }
+    currentId++;
+    usersJson.data.push(user);
+    res.send({data: user});
+  })
 
   app.use(
     '/api/users',

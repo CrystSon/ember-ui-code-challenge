@@ -1,0 +1,13 @@
+<ModalDialog @translucentOverlay={{true}}>
+  <p>Please input information</p>
+  <div>
+    <Input type="input" @value={{this.name}} />
+    {{!-- <Input @value={{this.value}} /> --}}
+    {{!-- vs --}}
+    {{!-- <input value={{this.value}} /> --}}
+  </div>
+  <div class='modal-button-group'>
+    <button class='modal-button' type="button" {{on "click" (perform this.saveUser)}}>Yes</button>
+    <button class='modal-button' type="button" {{on "click" @closeDialog}}>No</button>
+  </div>
+</ModalDialog>

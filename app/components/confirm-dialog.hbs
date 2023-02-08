@@ -1,4 +1,4 @@
-{{#modal-dialog translucentOverlay=true}}
+<ModalDialog @translucentOverlay={{true}}>
   <p>Do really you want to
     {{#if @isArchived}}
       unarchive
@@ -7,7 +7,7 @@
     {{/if}}
     this user?</p>
   <div class='modal-button-group'>
-    <button class='modal-button' {{on 'click' @onConfirmModal}}>Yes</button>
-    <button class='modal-button' {{on 'click' @onDeclineModal}}>No</button>
+    <button class='modal-button' type="button" {{on 'click' @onConfirmModal}}>Yes</button>
+    <button class='modal-button' type="button" {{on 'click' @onDeclineModal}}>No</button>
   </div>
-{{/modal-dialog}}
+</ModalDialog>
